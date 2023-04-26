@@ -30,7 +30,12 @@ classifier = pickle.load(pickle_in)
 
 # 3. Expose the prediction functionality, make a prediction from the passed
 #    JSON data and return the predicted Bank Note with the confidence
-@app.post('/')
+@app.get('/')
+def main():
+    return {"hello": "world"}
+
+
+@app.post('/predict')
 def predict_banknote(data: BankNote):
     data = data.dict()
     variance = data['variance']
