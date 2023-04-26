@@ -17,7 +17,7 @@ class BankNote(BaseModel):
 # 2. Create the app object
 app = FastAPI()
 
-app.mount("/C", StaticFiles(directory="build", html=True), name="static")
+app.mount("/CC", StaticFiles(directory="build", html=True), name="static")
 
 origins = ['http://localhost:3000']
 
