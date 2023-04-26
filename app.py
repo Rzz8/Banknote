@@ -6,6 +6,9 @@ import numpy as np
 import pickle
 import pandas as pd
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+
+
 
 
 class BankNote(BaseModel):
@@ -16,6 +19,8 @@ class BankNote(BaseModel):
 
 # 2. Create the app object
 app = FastAPI()
+
+app.mount("/", StaticFiles(directory="build", html=True), name="static")
 
 origins = ['http://localhost:3000']
 
@@ -30,10 +35,6 @@ classifier = pickle.load(pickle_in)
 
 # 3. Expose the prediction functionality, make a prediction from the passed
 #    JSON data and return the predicted Bank Note with the confidence
-@app.get('/')
-def main():
-    return {"hello": "world"}
-
 
 @app.post('/predict')
 def predict_banknote(data: BankNote):
