@@ -18,7 +18,7 @@ const PostForm = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:8000/predict", {
+    Axios.post("http://localhost:8000", {
       variance: data.variance,
       skewness: data.skewness,
       curtosis: data.curtosis,

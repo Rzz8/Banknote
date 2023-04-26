@@ -28,14 +28,9 @@ app.add_middleware(CORSMiddleware,
 pickle_in = open("classifier.pkl", "rb")
 classifier = pickle.load(pickle_in)
 
-@app.get('/')
-def main():
-    return {"hello": "world"}
-
-
 # 3. Expose the prediction functionality, make a prediction from the passed
 #    JSON data and return the predicted Bank Note with the confidence
-@app.post('/predict')
+@app.post('/')
 def predict_banknote(data: BankNote):
     data = data.dict()
     variance = data['variance']
