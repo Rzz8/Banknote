@@ -28,7 +28,7 @@ app.add_middleware(CORSMiddleware,
 pickle_in = open("classifier.pkl", "rb")
 classifier = pickle.load(pickle_in)
 
-app.mount("/static", StaticFiles(directory="build", html=True), name="static")
+app.mount("/", StaticFiles(directory="build", html=True), name="static")
 
 # 3. Expose the prediction functionality, make a prediction from the passed
 #    JSON data and return the predicted Bank Note with the confidence
@@ -51,6 +51,6 @@ def predict_banknote(data: BankNote):
 # 5. Run the API with uvicorn
 #    Will run on http://127.0.0.1:8000
 if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0', port=8000)
+    uvicorn.run(app, host='127.0.0.1', port=8000)
 
 #uvicorn app:app --reload
