@@ -17,8 +17,6 @@ class BankNote(BaseModel):
 # 2. Create the app object
 app = FastAPI()
 
-app.mount("/CC", StaticFiles(directory="build", html=True), name="static")
-
 origins = ['http://localhost:3000']
 
 app.add_middleware(CORSMiddleware,
@@ -29,6 +27,8 @@ app.add_middleware(CORSMiddleware,
 
 pickle_in = open("classifier.pkl", "rb")
 classifier = pickle.load(pickle_in)
+
+app.mount("/C", StaticFiles(directory="build", html=True), name="static")
 
 # 3. Expose the prediction functionality, make a prediction from the passed
 #    JSON data and return the predicted Bank Note with the confidence
