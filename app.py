@@ -17,7 +17,7 @@ class BankNote(BaseModel):
 # 2. Create the app object
 app = FastAPI()
 
-origins = ['http://localhost:3000']
+origins = ['https://banknote-react-fastapi.herokuapp.com/']
 
 app.add_middleware(CORSMiddleware,
                    allow_origins=origins,
